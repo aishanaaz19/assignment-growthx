@@ -1,0 +1,19 @@
+{
+  "name": "asp-growthx",
+  "version": "1.0.0",
+  "description": "Assignment Submission Portal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aishanaaz19/assignment-growthx.git"
+  },
+  "author": "Aisha Naaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aishanaaz19/assignment-growthx/issues"
+  },
+  "homepage": "https://github.com/aishanaaz19/assignment-growthx#readme"
+}
