@@ -1,0 +1,24 @@
+<%- include ("../components/header.ejs") %>
+
+<h2>Assignment Status</h2>
+
+<% if (assignment) { %>
+    <p>Assignment: <%= assignment.task %></p>
+    <p>User: <%= assignment.userId %></p>
+    <p>Status: <%= assignment.status %></p>
+    <p>Time: <%= new Date(assignment.updatedAt).toLocaleString() %></p>
+<% } else { %>
+    <p>Assignment not found.</p>
+<% } %>
+
+<% if (status === 'accepted') { %>
+    <script>
+        alert('Assignment has been accepted.');
+    </script>
+<% } else if (status === 'rejected') { %>
+    <script>
+        alert('Assignment has been rejected.');
+    </script>
+<% } %>
+
+<%- include ("../components/footer.ejs") %>

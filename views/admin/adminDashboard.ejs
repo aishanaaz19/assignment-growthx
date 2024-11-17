@@ -1,0 +1,39 @@
+<%- include ("../components/header.ejs") %>
+<h1>Welcome, <%= adminName %></h1>
+    <h2>Your Assignments</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Task</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% assignments.forEach(assignment => { %>
+                <tr>
+                    <td><%= assignment.userId %></td>
+                    <td><%= assignment.task %></td>
+                    <td><%= new Date(assignment.createdAt).toLocaleString() %></td>
+                    <td><%= assignment.status %></td>
+                    <td>
+                        <% if (assignment.status === 'Pending') { %>
+                            <form action="/update-assignment" method="POST" style="display:inline;">
+                                <input type="hidden" name="assignmentId" value="<%= assignment._id %>">
+                                <button type="submit" name="status" value="Accepted">Accept</button>
+                            </form>
+                            <form action="/update-assignment" method="POST" style="display:inline;">
+                                <input type="hidden" name="assignmentId" value="<%= assignment._id %>">
+                                <button type="submit" name="status" value="Rejected">Reject</button>
+                            </form>
+                        <% } else { %>
+                            <%= assignment.status %>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<%- include ("../components/footer.ejs") %>

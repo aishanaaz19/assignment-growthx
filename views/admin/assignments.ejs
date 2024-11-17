@@ -1,0 +1,42 @@
+<%- include ("../components/header.ejs") %>
+<% if (adminName) { %>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Task</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% assignments.forEach(assignment => { %>
+            <tr>
+                <td><%= assignment.userId %></td>
+                <td><%= assignment.task %></td>
+                <td><%= new Date(assignment.timestamp).toLocaleDateString() %></td>
+                <td><%= assignment.status %></td>
+                <td>
+                    <% if (assignment.status === 'Pending') { %>
+                        <form action="/assignments/<%= assignment._id %>/accept" method="POST" style="display:inline;">
+                            <input type="hidden" name="assignmentId" value="<%= assignment._id %>">
+                            <button type="submit" name="status" value="Accepted">Accept</button>
+                        </form>
+                        <form action="/assignments/<%= assignment._id %>/reject" method="POST" style="display:inline;">
+                            <input type="hidden" name="assignmentId" value="<%= assignment._id %>">
+                            <button type="submit" name="status" value="Rejected">Reject</button>
+                        </form>
+                    <% } else { %>
+                        <%= assignment.status %>
+                    <% } %>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+<% } else { %>
+    <p>Admin not logged in. Please <a href="/admin/login">login</a>.</p>
+<% } %>
+<%- include ("../components/footer.ejs") %>

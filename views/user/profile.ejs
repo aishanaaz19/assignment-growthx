@@ -1,0 +1,67 @@
+<%- include ("../components/header.ejs") %>
+<h1>User Dashboard</h1>
+<% if (user) { %>
+ <div class="py-6 px-8">
+  <h1 class="text-3xl font-semibold">User Dashboard</h1>
+  <div class="border border-gray-300 my-4 p-4 flex flex-row shadow-md">
+    <div class="py-2 text-gray-500 w-60">
+      <ul id="menu">
+        <li class="menu-item border-b border-b-gray-100 mb-4 mr-4 w-full cursor-pointer hover:text-black hover:font-semibold" data-target="menu-1">Upload assignment</li>
+        <li class="menu-item border-b border-b-gray-100 mb-4 mr-4 w-full cursor-pointer hover:text-black hover:font-semibold" data-target="menu-2">List all admins</li>
+        <li class="menu-item border-b border-b-gray-100 mb-4 mr-4 w-full cursor-pointer hover:text-black hover:font-semibold" data-target="menu-3">Account Info</li>
+      </ul>
+    </div>
+    <div class="p-2 mx-4 w-full">
+      <div class="menu-content menu-1">
+        <p>Upload an assignment</p>
+        <a href="/upload"><button type="submit" value="upload">Upload</button></a>
+        
+      </div>
+      <div class="menu-content menu-2 hidden">
+        <p>All admins</p>
+      </div>
+      <div class="menu-content menu-3 hidden">
+        <div class="p-2 pb-0 mb-2 text-lg border-b border-b-gray-200"><p class="text-gray-700">Username:<span class="text-gray-500  ml-4 text-base"><%= user.username %></span></p></div>
+        <div class="p-2 pb-0 mb-2 text-lg border-b border-b-gray-200"><p class="text-gray-700">Full Name:<span class="text-gray-500  ml-4 text-base"><%= user.fullname %></span></p></div>
+        <div class="p-2 pb-0 mb-2 text-lg border-b border-b-gray-200"><p class="text-gray-700">Email Id:<span class="text-gray-500  ml-4 text-base"><%= user.email %></span></p></div>
+        <div class="p-2 pb-0 mb-2 text-lg border-b border-b-gray-200"><p class="text-gray-700">User ID:<span class="text-gray-500  ml-4 text-base"><%= user._id %></span></p></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="flex items-center justify-end mx-8">
+    <form action="/logout" method="post">
+      <button type="submit" class="rounded-md py-1 px-3 bg-red-600 hover:bg-red-700 text-white text-center shadow-sm">Logout</button>
+    </form>
+  </div>
+    
+  <% } else { %>
+    <p>User not logged in. Please <a href="/user/login">login</a>.</p>
+  <% } %>
+
+  <script>
+    const menuItems = document.querySelectorAll('.menu-item');
+    const menus = document.querySelectorAll('.menu-content');
+
+    function clearActiveClasses() {
+      menuItems.forEach(item => {
+        item.classList.remove('text-black', 'font-semibold'); 
+      });
+    }
+
+    function hideAllMenus() {
+      menus.forEach(menu => {
+        menu.classList.add('hidden');
+      });
+    }
+    menuItems.forEach(item => {
+      item.addEventListener('click', function() {
+        clearActiveClasses();
+        hideAllMenus();
+        this.classList.add('text-black', 'font-semibold');
+        const targetMenu = document.querySelector(`.${this.getAttribute('data-target')}`);
+        targetMenu.classList.remove('hidden');
+      });
+    });
+  </script>
+<%- include ("../components/footer.ejs") %>

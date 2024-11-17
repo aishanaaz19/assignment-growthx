@@ -1,0 +1,17 @@
+<%- include ("./components/header.ejs") %>
+
+    <div class="bg-gray-400 min-h-screen flex justify-center items-center">
+        <div class="bg-white rounded-lg w-1/3 p-8">
+            <h2 class="p-2 my-2 text-center">Login as</h2>
+            <div class="flex justify-around items-center p-2 my-2"> 
+                <a href="/user/login">
+                    <button class="bg-red-500 py-2 px-6 rounded-lg">User</button>
+                </a>
+                <a href="/admin/login">
+                    <button class="bg-green-500 py-2 px-6 rounded-lg">Admin</button>
+                </a>
+            </div>   
+        </div>
+    </div>
+    
+<%- include ("./components/footer.ejs") %>

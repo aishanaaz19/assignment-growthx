@@ -1,0 +1,23 @@
+<form action="/upload" method="POST">
+    <!-- User ID -->
+    <label for="userId">Your Name:</label>
+    <input type="text" id="userId" name="userId" placeholder="Enter your name" required>
+    <br><br>
+
+    <!-- Task -->
+    <label for="task">Assignment Task:</label>
+    <textarea id="task" name="task" placeholder="Write assignment" required></textarea>
+    <br><br>
+
+    <!-- Admin -->
+    <label for="admin">Assign to Admin:</label>
+    <select id="admin" name="admin" required>
+        <% admins.forEach(admin => { %>
+            <option value="<%= admin %>"><%= admin %></option>
+        <% }); %>
+    </select>
+    <br><br>
+
+    <button type="submit">Submit Assignment</button>
+</form>
+  

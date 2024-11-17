@@ -1,0 +1,46 @@
+<%- include ("../components/header.ejs") %>
+<div class="w-full h-[88.5vh] flex items-center justify-center">
+    <div class="w-96 h-auto bg-white px-14 py-6 rounded-xl shadow-lg">
+      <h1 class="text-2xl font-raleway font-semibold text-zinc-700  tracking-tighter text-center leading-none mb-8">Admin login</h1>
+      <form class="relative" action="/admin/login" method="post">
+  
+        <input
+          name="username"
+          type="text"
+          placeholder="User Name"       
+          class="w-full h-12 mt-3 mb-6 border-gray-400 border-b-[1px] items-center px-3 py-2 ml-2 focus:outline-none focus:bg-none"
+        />
+        
+        <input
+          name="password"
+          id="password"
+          type="password"
+          placeholder="Password"
+          class="w-full h-12 mt-3 mb-6 border-gray-400 border-b-[1px] items-center px-3 py-2 ml-2 focus:outline-none focus:bg-none"
+        />
+        <button onclick="togglePassword()" class="text-zinc-700 cursor-pointer absolute right-2 top-28">
+          <span id="abc">
+  
+            <i class="ri-eye-fill"></i>
+          </span>
+      </button>
+        <a class="font-semibold  text-zinc-500 inline-block my-2" href="/forgot">Forgot your password?</a>
+  
+        <input class="block border-2 mt-2 w-full px-3 py-2 mb-3 bg-[#0D9276] text-white font-semibold rounded-full " type="submit" value="Log in" class="btn int" />
+  
+        <a href="/admin/register" class=""><p class="text-zinc-500 text-center text-sm">New admin? <b class="text-[#0D9276]">Register here</b> </p></a>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const pass = document.getElementById('abc');
+    pass.addEventListener('click', togglePassword)
+    function togglePassword(e) {
+      e.preventDefault()
+        const passwordInput = document.getElementById('password');
+        passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+        pass.innerHTML = (passwordInput.type === 'password') ? '<i class="ri-eye-fill"></i>' : '<i class="ri-eye-off-fill"></i>'
+    }
+  </script>
+<%- include ("../components/footer.ejs") %>
